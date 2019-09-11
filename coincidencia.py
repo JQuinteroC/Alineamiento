@@ -7,15 +7,15 @@ def posiones(i):
         
         inf1 = 30 - (i+1)
         sup1 = 30
-    elif i >= 120 :
-        inf = i
+    elif i >= 150 :
+        inf = i -30
         sup = 150
         
         inf1 = 0
         sup1 = 30 - (i - 120)
     else:
-        inf = i
-        sup = i + 30
+        inf = i-30
+        sup = i 
         
         inf1 = 0
         sup1 = 30
@@ -31,16 +31,16 @@ s2 = np.random.randint(4, size = 30)
 ## 2 -> G
 ## 3 -> T
 
-puntaje = np.zeros((150, 2), dtype=int)   # Almacena en número de coincidencias
+puntaje = np.zeros((180, 2), dtype=int)   # Almacena en número de coincidencias
 
 # Vector puntaje
-for i in range(150):
+for i in range(180):
     ## Estructura de desiciones de las posisiones a comparar en el arreglo
     inf, sup, inf1, sup1 = posiones(i)    
     # Toma los valores a comparar
     a = s1[inf: sup]
     b = s2[inf1: sup1]     
-    # Realiza la comparación
+    # Realiza la cmparación
     c = (a==b)    
     # Guarda el número de coincidencias
     puntaje[i] = [i, np.sum(c)]
@@ -51,8 +51,10 @@ print(puntaje)
 
 # Matrices
 print("La secuencia con mayor número de coincidencias es:",puntaje[::, 1].max())
-#Saca las possiciones de las secuencias a imprimir 
 inf, sup, inf1, sup1 = posiones(puntaje[::, 1].argmax())
+print("En la posición:",puntaje[::, 1].argmax())
+#Saca las possiciones de las secuencias a imprimir 
+
 print("La secuencia de coincidencia es:")
 #Impresion de las secuencias con mayor coincidencia 
 print(s1[inf:sup])
